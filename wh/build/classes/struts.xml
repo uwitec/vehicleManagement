@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+<!-- 国际化 -->
+<constant name="struts.custom.i18n.resources" value="message"></constant>   
+
+    <package name="customer" extends="struts-default">
+      <action name="customerlist" class="customerAction" method="list">
+        <result name="success">/customerlist.jsp</result> 
+      </action>
+
+      <action name="login" class="customerAction" method="login">
+    		<result name="success" type="redirect">showorderlist.action</result>
+    		<result name="input">/login.jsp</result>
+      </action>
+        <action name="tochinese" class="customerAction" method="toChinese">
+    		<result name="success">/login.jsp</result>
+      </action>
+          <action name="toenglish" class="customerAction" method="toEnglish">
+    		<result name="success">/login.jsp</result>
+      </action>
+    </package>
+    
+    
+    
+    <package name="tast" extends="struts-default">
+    	<action name="generateplan" class="action.TastAction" method="generateplan">
+        	<result name="success">/calmain1.jsp</result> 
+    	</action>
+    	<action name="uploadplan" class="action.TastAction" method="uploadplan">
+        	<result name="success">/calmain1.jsp</result> 
+    	</action>
+        <action name="showorderlist" class="action.TastAction" method="nocalorderlist">
+        	<result name="nocalorderlist">/orderlist.jsp</result> 
+    	</action>
+    </package>
+    
+    
+    
+    
+    
+    
+    <package name="orderform" extends="struts-default">
+    	<action name="orderformlist" class="orderFormAction" method="list">
+    		<result name="list">/orderformlist.jsp</result>
+    		<result name="currentlist">/orderformcurrentlist.jsp</result>
+    	</action>
+    	<action name="toaddorderform" class="orderFormAction" method="toadd">
+    		<result name="success">/addorder.jsp</result>
+    	</action>
+    	<action name="orderformdetail" class="orderFormAction" method="detail">
+    		<result name="detail">/orderformdetail.jsp</result>
+    		<result name="current">/orderformcurrent.jsp</result>
+    	</action>
+    	<action name="dispatchlist" class="orderFormAction" method="dispatchlist">
+    		<result name="success">/orderformdispatchlist.jsp</result>
+    	</action>
+    	<action name="dispatchdetail" class="orderFormAction" method="dispatchdetail">
+    		<result name="success">/orderformdispatchdetail.jsp</result>
+    	</action>
+    	<action name="citylist" class="orderFormAction" method="citylist">
+    		<result name="success">/citylist.jsp</result>
+    	</action>
+    </package>
+</struts>

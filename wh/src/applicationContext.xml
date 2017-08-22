@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<bean id="customerAction" class="action.CustomerAction" scope="prototype">
+	      <property name="customerService" ref="customerService"/>
+	      <property name="usersService" ref="usersService"/>
+	</bean>
+	<bean id="customerService" class="service.impl.CustomerServiceImpl">
+	      <property name="customerDao" ref="customerDao"/>
+	</bean>
+	<bean id="customerDao" class="dao.impl.CustomerDaoImpl">
+	      <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="usersService" class="service.impl.UsersServiceImpl">
+	      <property name="usersDao" ref="usersDao"/>
+	</bean>
+	<bean id="usersDao" class="dao.impl.UsersDaoImpl">
+	      <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	
+	
+	<bean id="tastAction" class="action.TastAction" scope="prototype">
+		  <property name="logisticsplanservice" ref="logisticsplanservice"/>
+	      <property name="maincalculation" ref="maincalculation"/>
+	</bean>
+	<bean id="logisticsplanservice" class="service.impl.LogisticsPlanServiceImpl">
+	      <property name="logisticsplandoa" ref="logisticsplandoa"/>
+	</bean>
+	<bean id="maincalculation" class="method.MainCalculation">
+	      <property name="companypriceservice" ref="companypriceservice"/>
+	       <property name="provinceservice" ref="provinceservice"/>
+	</bean>
+	<bean id="logisticsplandoa" class="dao.impl.LogisticsPlanDaoImpl">
+	      <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="companypriceservice" class="service.impl.CompanyPriceServiceImpl">
+	      <property name="companypricedao" ref="companypricedao"/>
+	</bean>
+	<bean id="provinceservice" class="service.impl.ProvinceTypeServiceImpl">
+	      <property name="privincetypedao" ref="privincetypedao"/>
+	</bean>
+	<bean id="companypricedao" class="dao.impl.CompanyPriceDaoImpl">
+	      <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="privincetypedao" class="dao.impl.ProvinceTypeDaoImpl">
+	      <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<bean id="orderFormAction" class="action.OrderFormAction" scope="prototype" >
+		<property name="orderFormService" ref="orderFormService"/>
+		<property name="cityService" ref="cityService"/>
+		<property name="schemeService" ref="schemeService" />
+		<property name="ordercenterService" ref="ordercenterService"></property>
+	</bean>
+	<bean id="orderFormService" class="service.impl.OrderFormServiceImpl">
+		<property name="orderFormDao" ref="orderFormDao"/>
+	</bean>
+	<bean id="orderFormDao" class="dao.impl.OrderFormDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="cityDao" class="dao.impl.CityDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="cityService" class="service.impl.CityServiceImpl">
+		<property name="cityDao" ref="cityDao"/>
+	</bean>
+	
+	<bean id="schemeService" class="service.impl.SchemeServiceImpl">
+		<property name="schemeDao" ref="schemeDao"/>
+	</bean>
+	<bean id="schemeDao" class="dao.impl.SchemeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="ordercenterService" class="service.impl.OrderCenterServiceImpl">
+		<property name="ordercenterDao" ref="ordercenterDao"/>
+	</bean>
+	<bean id="ordercenterDao" class="dao.impl.OrderCenterDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="sessionFactory" 
+	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	      <property name="dataSource" ref="dataSource"/>
+	      <property name="hibernateProperties">
+	         <props>
+	            <prop key="hibernate.dialect">
+	           org.hibernate.dialect.SQLServerDialect
+	            </prop>	         
+	         </props>
+	      </property>
+	      <property name="mappingResources">
+	        <list>
+	           <value>pojos/Customer.hbm.xml</value>
+	           <value>pojos/OrderForm.hbm.xml</value>
+	           <value>pojos/City.hbm.xml</value>
+	           <value>pojos/Scheme.hbm.xml</value>
+	           <value>pojos/OrderCenter.hbm.xml</value>
+	           <value>pojos/User.hbm.xml</value>
+	           <value>pojos/Users.hbm.xml</value>
+	           <value>pojos/CompanyPrice.hbm.xml</value>
+	           <value>pojos/LogisticsPlan.hbm.xml</value>
+	           <value>pojos/ProvinceType.hbm.xml</value>
+
+	        </list>
+	      </property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	   <property name="sessionFactory">
+	       <ref bean="sessionFactory"/>
+	   </property>
+	</bean>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	      destroy-method="close">
+	      <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	      <property name="url" value="jdbc:sqlserver://localhost:1433; DatabaseName=logisticschoosing"/>
+	      <property name="username" value="zwh"/>
+	      <property name="password" value="111"/>
+	      <property name="initialSize" value="30"/>
+	      <property name="maxActive" value="100"/>
+	      <property name="maxIdle" value="100"/>
+	      <property name="maxWait" value="1000"/>	
+	</bean>
+	<tx:advice id="TestAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+	      <tx:method name="save*" propagation="REQUIRED"/>
+	      <tx:method name="del*" propagation="REQUIRED"/>
+	      <tx:method name="update*" propagation="REQUIRED"/>
+	      <tx:method name="add*" propagation="REQUIRED"/>
+	      <tx:method name="find*" propagation="REQUIRED"/>
+	      <tx:method name="get*" propagation="REQUIRED"/>
+	      <tx:method name="apply*" propagation="REQUIRED"/>
+	    </tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="allTestServiceMethod" expression="execution(* service.*.*(..))"/>
+		<aop:advisor pointcut-ref="allTestServiceMethod" advice-ref="TestAdvice" />
+	</aop:config>
+</beans>

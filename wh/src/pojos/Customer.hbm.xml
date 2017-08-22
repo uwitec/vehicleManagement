@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="Customer" table="customer">
+		<id name="cusId" column="CUS_ID">
+			<generator class="native" />
+		</id>
+		<property name="cusName" column="CUS_NAME" type="string" />
+		<property name="cusTel" column="CUS_TEL" type="string"/>
+		<property name="cusCartype" column="CUS_CARTYPE" type="string"/>
+		<property name="companyName" column="COMPANY_NAME" type="string"/>
+		<property name="companyAddress" column="COMPANY_ADDRESS" type="string"/>
+		<property name="cusStatus" column="CUS_STATUS" type="int"/>
+		<property name="cusNumber" column="CUS_NUMBER" type="string"/>
+		<property name="cusPassword" column="CUS_PASSWORD" type="string"/>
+		 <many-to-one
+        name="cusCity"
+        column="CUS_CITY"
+        class="City"
+        cascade="none"
+       lazy="false" />
+	</class>
+</hibernate-mapping>

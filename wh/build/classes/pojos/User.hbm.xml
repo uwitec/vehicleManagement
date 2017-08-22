@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="User">
+		<id name="id" column="ID">
+			<generator class="native" />
+		</id>
+		<property name="username" column="USERNAME" type="string"
+			not-null="true" />
+		<property name="password" column="PASSWORD" type="string"
+			not-null="true" />
+		<property name="realname" column="REALNAME" type="string"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="City" table="CITY">
+		<id name="cityId" column="CITY_ID">
+			<generator class="native" />
+		</id>
+		<property name="cityName" column="CITY_NAME" type="string" />
+		<property name="transit" column="TRANSIT" type="int" />
+		<property name="storage" column="STORAGE" type="int" />
+	</class>
+</hibernate-mapping>

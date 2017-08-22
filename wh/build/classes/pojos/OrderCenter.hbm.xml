@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="OrderCenter" table="ordercenter">
+		<id name="ordercenterId" column="ORDERCENTER_ID">
+			<generator class="native" />
+		</id>
+		<property name="orderformId" column="ORDERFORM_ID" type="int" />
+		<property name="status" column="STATUS" type="int" />
+		<property name="startTime" column="START_TIME" type="string" />
+		<property name="endTime" column="END_TIME" type="string" />
+		<property name="transportMode" column="TRANSPORT_MODE" type="string" />
+		 <many-to-one
+        name="scheme"
+        column="SCHEME_ID"
+        class="Scheme"
+        cascade="none"
+       lazy="false" />
+	</class>
+</hibernate-mapping>

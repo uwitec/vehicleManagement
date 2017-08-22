@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="CompanyPrice" table="companyprice">
+		<id name="companyname" column="companyname" type="string"></id>
+		
+		<property name="shengneishouzhong" column="shengneishouzhong" type="int" />
+		<property name="shengneixuzhong" column="shengneixuzhong" type="int" />
+		<property name="zhuyaoshengshouzhong" column="zhuyaoshengshouzhong" type="int" />
+		<property name="zhuyaoshengxuzhong" column="zhuyaoshengxuzhong" type="int" />
+		<property name="pianyuanshengshouzhong" column="pianyuanshengshouzhong" type="int" />
+		<property name="pianyuanshengxuzhong" column="pianyuanshengxuzhong" type="int" />
+		<property name="zhuyaoshengdiubaolv" column="zhuyaoshengdiubaolv" type="int" />
+		<property name="pianyuanshengdiubaolv" column="pianyuanshengdiubaolv" type="int" />
+		<property name="tel" column="tel" type="string" />
+		
+	</class>
+</hibernate-mapping>

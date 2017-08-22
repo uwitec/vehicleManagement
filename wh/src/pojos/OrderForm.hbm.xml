@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="OrderForm" table="orderform">
+		<id name="orderId" column="ORDER_ID">
+			<generator class="native" />
+		</id>
+		<property name="orderNumber" column="ORDER_NUMBER" type="string" />
+		<property name="carType" column="CAR_TYPE" type="string"/>
+		<property name="orderTime" column="ORDER_TIME" type="string"/>
+		<property name="carNumber" column="CAR_NUMBER" type="int"/>
+		<property name="allCity" column="ALL_CITY" type="string"/>
+		<property name="orderStatus" column="ORDER_STATUS" type="int"/>
+		<property name="sendorderTime" column="SENDORDER_TIME" type="string"/>
+		<property name="receiptTime" column="RECEIPT_TIME" type="string"/>
+		  <many-to-one
+        name="startCity"
+        column="START_CITY"
+        class="City"
+        cascade="none"
+       lazy="false" />
+	  <many-to-one
+        name="endCity"
+        column="END_CITY"
+        class="City"
+        cascade="none"
+        lazy="false"/>
+          <many-to-one
+        name="orderCustomer"
+        column="CUS_ID"
+        class="Customer"
+        cascade="none"
+        lazy="false"/>
+	</class>
+</hibernate-mapping>

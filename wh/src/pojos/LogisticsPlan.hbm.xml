@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="LogisticsPlan" table="logisticsplan">
+		<id name="planno" column="planno">
+			<generator class="native" />
+		</id>
+		<property name="departureplace" column="departureplace" type="string" />
+		<property name="destination" column="destination" type="string"/>
+		<property name="ordernumber" column="ordernum" type="string" />
+		<property name="planning" column="planning" type="string"/>
+		<property name="weight" column="weight" type="int"/>
+	</class>
+</hibernate-mapping>

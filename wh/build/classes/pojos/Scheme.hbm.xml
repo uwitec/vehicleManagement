@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pojos">
+	<class name="Scheme" table="scheme">
+		<id name="schemeId" column="SCHEME_ID">
+			<generator class="native" />
+		</id>
+		<property name="schemeDistance" column="SCHEME_DISTANCE" type="int" />
+		<property name="schemeType" column="SCHEME_TYPE" type="int"/>
+		  <many-to-one
+        name="startCity"
+        column="START_CITY_ID"
+        class="City"
+        cascade="none"
+       lazy="false"/>
+	  <many-to-one
+        name="endCity"
+        column="END_CITY_ID"
+        class="City"
+        cascade="none"
+       lazy="false"/>
+	</class>
+</hibernate-mapping>
